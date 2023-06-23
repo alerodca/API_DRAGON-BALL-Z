@@ -4,43 +4,42 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCollectionCell" id="gTV-IL-0wX" customClass="CollectionCell" customModule="Proyecto" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="242" height="113"/>
+            <rect key="frame" x="0.0" y="0.0" width="242" height="134"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="242" height="113"/>
+                <rect key="frame" x="0.0" y="0.0" width="242" height="134"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pqD-mr-jup">
-                        <rect key="frame" x="0.0" y="0.0" width="242" height="113"/>
+                        <rect key="frame" x="0.0" y="0.0" width="242" height="134"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uSs-BD-7Gb">
-                                <rect key="frame" x="91" y="16" width="60" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="242" height="95"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="sJL-md-A9C"/>
-                                    <constraint firstAttribute="width" constant="60" id="zUs-CI-NiB"/>
+                                    <constraint firstAttribute="height" constant="95" id="sJL-md-A9C"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYf-vN-WCl">
-                                <rect key="frame" x="8" y="84" width="226" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="8" y="104" width="226" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uSs-BD-7Gb" secondAttribute="trailing" id="7io-6J-2Tx"/>
                             <constraint firstItem="uSs-BD-7Gb" firstAttribute="centerX" secondItem="pqD-mr-jup" secondAttribute="centerX" id="MGg-00-pfV"/>
                             <constraint firstAttribute="trailing" secondItem="TYf-vN-WCl" secondAttribute="trailing" constant="8" id="Tsk-HY-s0t"/>
-                            <constraint firstItem="TYf-vN-WCl" firstAttribute="top" secondItem="uSs-BD-7Gb" secondAttribute="bottom" constant="8" id="gan-Ph-U3U"/>
+                            <constraint firstItem="TYf-vN-WCl" firstAttribute="top" secondItem="uSs-BD-7Gb" secondAttribute="bottom" constant="9" id="gan-Ph-U3U"/>
                             <constraint firstItem="TYf-vN-WCl" firstAttribute="leading" secondItem="pqD-mr-jup" secondAttribute="leading" constant="8" id="h4S-sd-Ca6"/>
-                            <constraint firstItem="uSs-BD-7Gb" firstAttribute="top" secondItem="pqD-mr-jup" secondAttribute="top" constant="16" id="xcv-8w-ghr"/>
+                            <constraint firstItem="uSs-BD-7Gb" firstAttribute="top" secondItem="pqD-mr-jup" secondAttribute="top" id="xcv-8w-ghr"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -52,17 +51,12 @@
                 <constraint firstItem="pqD-mr-jup" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XpF-gn-Z2j"/>
                 <constraint firstItem="pqD-mr-jup" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="YIv-77-mDF"/>
             </constraints>
-            <size key="customSize" width="242" height="113"/>
+            <size key="customSize" width="242" height="134"/>
             <connections>
                 <outlet property="iconImageView" destination="uSs-BD-7Gb" id="1y5-aE-pcw"/>
                 <outlet property="titleLabel" destination="TYf-vN-WCl" id="kcH-q1-Vix"/>
             </connections>
-            <point key="canvasLocation" x="184.73282442748092" y="12.323943661971832"/>
+            <point key="canvasLocation" x="184.73282442748092" y="19.718309859154932"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

@@ -16,7 +16,42 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(openKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(closeKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func openKeyboard() {
+        print("Open Keyboard")
+    }
+    
+    @objc func closeKeyboard() {
+        print("Close Keyboard")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        emailTextField.center.x -= view.bounds.width
+        passwordTextField.center.x -= view.bounds.width
+        loginButton.alpha = 0
+        
+        UIView.animate(withDuration: 3,
+                       delay: 0,
+                       usingSpringWithDamping: 0.75,
+                       initialSpringVelocity: 0,
+                       options: []) {
+            self.emailTextField.center.x += self.view.bounds.width
+            self.passwordTextField.center.x += self.view.bounds.width
+        }
+        
+        UIView.animate(withDuration: 3) {
+            self.loginButton.alpha = 1
+        }
     }
 
     @IBAction func loginButtonTapped(_ sender: Any) {

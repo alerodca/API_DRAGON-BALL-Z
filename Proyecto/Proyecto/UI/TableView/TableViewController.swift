@@ -26,7 +26,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
         tableView.dataSource = self
         
-        title = "Heroes"
+        navigationItem.title = "Heroes"
         
         // Identificado de la tableviewcell de xCODE por defecto
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -40,6 +40,9 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if let allHeroes = allHeroes {
                 self.heroes = allHeroes
+                LocalDataLayer.shared.save(heroes: allHeroes)
+                
+                NotificationCenter.default.post(Notification(name: Notification.Name("fetchHeroes")))
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -87,6 +90,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let heroe = heroes[indexPath.row]
         let detailsView = DetailsViewController()
+        detailsView.heroe = heroe
         navigationController?.pushViewController(detailsView, animated: true)
     }
 }

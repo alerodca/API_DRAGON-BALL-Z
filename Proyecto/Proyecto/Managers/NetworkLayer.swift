@@ -97,4 +97,41 @@ final class NetworkLayer {
         task.resume()
     }
     
+    func fetchTransformations(token: String?,heroeId: String?, completion: @escaping ([Transformation]?, Error?) -> Void) {
+        guard let url = URL(string: "https://dragonball.keepcoding.education/api/heros/tranformations") else {
+            completion(nil, NetworkError.malformedURL)
+            return
+        }
+        
+        var urlComponents = URLComponents()
+        urlComponents.queryItems = [URLQueryItem(name: "id", value: heroeId ?? "")]
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("Bearer \(token ?? "")", forHTTPHeaderField: "Authorization")
+        urlRequest.httpBody = urlComponents.query?.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, _ , error in
+            guard error == nil else {
+                completion(nil, error)
+                return
+            }
+            
+            guard let data = data else {
+                completion(nil, NetworkError.noData)
+                return
+            }
+            
+            guard let transformations = try? JSONDecoder().decode([Transformation].self, from: data) else {
+                completion(nil, NetworkError.decodingFailed)
+                return
+            }
+            
+            // Yu-huu
+            completion(transformations, nil)
+        }
+        
+        task.resume()
+    }
+
 }

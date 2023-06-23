@@ -11,6 +11,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var heroes: [Heroe] = []
+    
     let customRows = [
         CustomItem(image: UIImage(systemName: "pencil.circle")!, text: "Lunes"),
         CustomItem(image: UIImage(systemName: "trash.circle")!, text: "Martes"),
@@ -27,20 +29,23 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        navigationItem.title = "Heroes"
+        heroes = LocalDataLayer.shared.getHeroes()
+        
         let xib = UINib(nibName: "CollectionCell", bundle: nil)
         collectionView.register(xib, forCellWithReuseIdentifier: "customCollectionCell")
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return customRows.count
+        return heroes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCollectionCell", for: indexPath) as! CollectionCell
         
-        let customItem = customRows[indexPath.row]
-        cell.iconImageView.image = customItem.image
-        cell.titleLabel.text = customItem.text
+        let heroes = heroes[indexPath.row]
+        cell.iconImageView.setImage(url: heroes.photo)
+        cell.titleLabel.text = heroes.name
         
         return cell
     }
@@ -51,6 +56,13 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         let totalSpacing: CGFloat = (itemsInRow - 1) * spacing
         let finalWidth = (collectionView.frame.width - totalSpacing) / itemsInRow
         
-        return CGSize(width: finalWidth, height: 120)
+        return CGSize(width: finalWidth, height: 140)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let heroe = heroes[indexPath.row]
+        let detailsView = DetailsViewController()
+        detailsView.heroe = heroe
+        navigationController?.pushViewController(detailsView, animated: true)
     }
 }
